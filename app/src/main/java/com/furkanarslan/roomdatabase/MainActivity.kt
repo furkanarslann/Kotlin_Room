@@ -21,6 +21,23 @@ class MainActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Main).launch {
 
+            val newUser = User(0, "Furkan", 22)
+            userDao.insertUser(User(0, "Jack", 34))
+            userDao.insertUser(newUser)
+
+
+            val updatedUser = User(3, "Ceren", 23)
+            userDao.updateUser(updatedUser) // Updated person with ID 3
+
+            userDao.deleteUser(User(4, "", 0))// Deleted Person with ID 4
+
+        }
+
+        printAllUsers()
+    }
+
+    fun printAllUsers() {
+        CoroutineScope(Dispatchers.Main).launch {
             val list = userDao.getAllUsers()
 
             for (user in list) {
